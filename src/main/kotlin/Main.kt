@@ -1,3 +1,7 @@
+import funs.TextBox
+import funs.fib
+import funs.plus
+
 fun main(args: Array<String>) {
     log("program started")
     println("Hello \n  World \t!".replaceMultipleWhitespaceEx())
@@ -5,6 +9,11 @@ fun main(args: Array<String>) {
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     println("Program arguments: ${args.joinToString()}")
+
+    val tb = TextBox("tb1") + TextBox("txtbx2")
+    println("Combined is: $tb")
+
+    println("Fibonacci number is: ${fib(10_000)}")
 }
 
 fun log(message: String, logLevel: Int = 2): Boolean {
