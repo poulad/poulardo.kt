@@ -1,5 +1,6 @@
 package funs
 
+import java.math.BigDecimal
 import java.math.BigInteger
 
 /////////////////////////////////////////////////////////////
@@ -22,3 +23,9 @@ private tailrec fun tailRecFib(n: BigInteger, a: BigInteger, b: BigInteger): Big
     if (n == BigInteger("0")) b else tailRecFib(n - BigInteger("1"), a + b, a)
 
 /////////////////////////////////////////////////////////////
+
+fun countUpTo(n: Int, func: (Int) -> Unit) {
+    for (i in 1..n) {
+        func(i)
+    }
+}

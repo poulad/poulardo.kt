@@ -1,8 +1,10 @@
 import clazzes.Meeting
 import clazzes.Student
 import funs.TextBox
+import funs.countUpTo
 import funs.fib
 import funs.plus
+import nullz.demoNull
 import objekts.GeoLocation
 import objekts.Objekt
 
@@ -34,6 +36,15 @@ class Main {
             Objekt.printMe()
 
             println("GeoLocation is ${GeoLocation.of(34.123, -79.0054)}")
+
+            var total = 0 // non-final var is mutated inside closure
+            countUpTo(13) {
+                total += it
+                print("$it , ")
+            }
+            println("And their sum is $total")
+
+            demoNull()
         }
     }
 }
