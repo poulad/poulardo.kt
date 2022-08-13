@@ -1,3 +1,5 @@
+import clazzes.Meeting
+import clazzes.Student
 import funs.TextBox
 import funs.fib
 import funs.plus
@@ -14,6 +16,14 @@ fun main(args: Array<String>) {
     println("Combined is: $tb")
 
     println("Fibonacci number is: ${fib(10_000)}")
+
+    val student = Student("Joe", "Doe", 123)
+    println(student.getName())
+
+    val meetingNewYork = Meeting(546, "NYC", 111111111111)
+    val meetingToronto = meetingNewYork.copy(location = "Toronto")
+    println("Meeting in NYC ${meetingNewYork.hashCode()} $meetingNewYork")
+    println("Meeting in Toronto ${meetingToronto.hashCode()} $meetingToronto")
 }
 
 fun log(message: String, logLevel: Int = 2): Boolean {
