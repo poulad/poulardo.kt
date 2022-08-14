@@ -4,6 +4,7 @@ import funs.TextBox
 import funs.countUpTo
 import funs.fib
 import funs.plus
+import generics.demoGenerics
 import nullz.demoNull
 import objekts.GeoLocation
 import objekts.Objekt
@@ -50,6 +51,8 @@ class Main {
             myArray.forEachIndexed { i, str ->
                 println("myArray[$i] = $str")
             }
+
+            demoGenerics()
         }
     }
 }
