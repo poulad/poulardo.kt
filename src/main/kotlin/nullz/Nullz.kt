@@ -8,6 +8,7 @@ fun demoNull() {
 
     val fooNull: Foo? = null
     fooNull?.let(::printFooNonNull)
+    println(fooNull?.bar ?: "<null>")
 }
 
 fun printFooNonNull(foo: Foo) {

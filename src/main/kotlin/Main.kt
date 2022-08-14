@@ -45,6 +45,11 @@ class Main {
             println("And their sum is $total")
 
             demoNull()
+
+            val myArray = arrayOf("Foo", "Bar", "Baz", "Qux")
+            myArray.forEachIndexed { i, str ->
+                println("myArray[$i] = $str")
+            }
         }
     }
 }
