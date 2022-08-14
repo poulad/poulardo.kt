@@ -1,5 +1,6 @@
 import clazzes.Meeting
 import clazzes.Student
+import coroutine.demoCoroutine
 import funs.TextBox
 import funs.countUpTo
 import funs.fib
@@ -53,6 +54,7 @@ class Main {
             }
 
             demoGenerics()
+            demoCoroutine()
         }
     }
 }
