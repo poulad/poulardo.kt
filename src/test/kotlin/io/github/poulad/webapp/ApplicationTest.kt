@@ -28,4 +28,22 @@ class ApplicationTest {
         assertEquals(HttpStatusCode.NotFound, response.status)
         assertTrue(response.bodyAsText().isEmpty())
     }
+
+    @Test
+    fun shouldCreateNewCustomer() = testApplication {
+        val response = client.post("/customers") {
+            setBody(
+                """
+                {
+                    "id": "100",
+                    "firstName": "Joe",
+                    "lastName": "Doe",
+                    "email": "jdoe@email.com"
+                }
+            """.trimIndent()
+            )
+            contentType(ContentType.parse("application/json"))
+        }
+        assertEquals(HttpStatusCode.Created, response.status)
+    }
 }
