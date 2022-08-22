@@ -3,41 +3,38 @@
 package coroutine
 
 import kotlinx.coroutines.*
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.SendChannel
-import kotlinx.coroutines.channels.produce
+import kotlinx.coroutines.channels.*
 
-fun main(args: Array<String>) = runBlocking {
-    val channel = Channel<String>()
+fun main(args: Array<String>) = runBlocking<Unit> {
+    val channel = Channel<String>(capacity = Channel.BUFFERED);
     val sendChannel = channel as SendChannel<String>
-
-    val receiveChannel = produceElements(this, sendChannel)
+    val receiveChannel = this.produceElements(sendChannel)
 
     val consumerJob = launch {
-        repeat(5) {
-            val result = receiveChannel.receiveCatching()
-            if (result.isSuccess) {
-                println("~~> Received: '${result.getOrThrow()}'")
-            } else {
-                println("There was an issue with the channel! $result")
-            }
+//        receiveChannel.consumeEach {
+//            println("Received \"$it\"")
+//        }
+        println("Receiver is ready to consume messages")
+        for (msg in receiveChannel) {
+            println("Consumer got element '$msg'")
         }
-        channel.close()
     }
 
     consumerJob.join()
 }
 
-suspend fun produceElements(
-    coroutineScope: CoroutineScope,
-    sendChannel: SendChannel<String>
-): ReceiveChannel<String> = coroutineScope.produce {
-    var x = 1
-    while (true) {
-        println("--> Sender is computing element $x")
-        delay(400) // busy computing
-        sendChannel.send("Number #$x")
-        x++
+@OptIn(ExperimentalCoroutinesApi::class)
+suspend fun CoroutineScope.produceElements(sendChannel: SendChannel<String>): ReceiveChannel<String> =
+    this.produce {
+        this.launch {
+            repeat(15) {
+                println("Computing the next number")
+//                delay(100)
+                while (sendChannel.isClosedForSend) {
+                    delay(200)
+                }
+                println("Sending $it")
+                sendChannel.send("Number $it")
+            }
+        }
     }
-}
