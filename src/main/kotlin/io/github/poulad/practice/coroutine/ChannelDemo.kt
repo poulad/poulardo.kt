@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package coroutine
+package io.github.poulad.practice.coroutine
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*

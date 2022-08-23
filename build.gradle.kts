@@ -46,5 +46,5 @@ tasks.withType<KotlinCompile> {
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("io.github.poulad.webapp.ApplicationKt")
 }

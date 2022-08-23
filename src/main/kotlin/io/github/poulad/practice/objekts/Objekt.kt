@@ -1,4 +1,4 @@
-package objekts
+package io.github.poulad.practice.objekts
 
 import java.io.Closeable
 

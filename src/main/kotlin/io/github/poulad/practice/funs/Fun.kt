@@ -1,6 +1,5 @@
-package funs
+package io.github.poulad.practice.funs
 
-import java.math.BigDecimal
 import java.math.BigInteger
 
 /////////////////////////////////////////////////////////////

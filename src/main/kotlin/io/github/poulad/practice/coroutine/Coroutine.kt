@@ -1,4 +1,4 @@
-package coroutine
+package io.github.poulad.practice.coroutine
 
 import kotlinx.coroutines.*
 import kotlin.random.Random

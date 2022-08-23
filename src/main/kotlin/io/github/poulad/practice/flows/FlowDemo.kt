@@ -1,4 +1,4 @@
-package flows
+package io.github.poulad.practice.flows
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

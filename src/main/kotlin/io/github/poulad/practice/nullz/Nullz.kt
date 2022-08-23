@@ -1,4 +1,4 @@
-package nullz
+package io.github.poulad.practice.nullz
 
 data class Foo(val bar: Int, val baz: String)
 
@@ -14,4 +14,3 @@ fun demoNull() {
 fun printFooNonNull(foo: Foo) {
     println("Foo<bar=${foo.bar},baz=${foo.baz}>")
 }
-

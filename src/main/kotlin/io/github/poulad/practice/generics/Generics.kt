@@ -1,4 +1,4 @@
-package generics
+package io.github.poulad.practice.generics
 
 fun demoGenerics() {
     val listOfDoubles = listOf(Node(1.1), Node(1.2))

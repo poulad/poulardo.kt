@@ -1,4 +1,4 @@
-package clazzes
+package io.github.poulad.practice.clazzes
 
 abstract class Person(var firstName: String, var lastName: String) {
 

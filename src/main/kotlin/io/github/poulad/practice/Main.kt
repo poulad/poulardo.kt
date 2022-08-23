@@ -1,14 +1,16 @@
-import clazzes.Meeting
-import clazzes.Student
-import coroutine.demoCoroutine
-import funs.TextBox
-import funs.countUpTo
-import funs.fib
-import funs.plus
-import generics.demoGenerics
-import nullz.demoNull
-import objekts.GeoLocation
-import objekts.Objekt
+package io.github.poulad.practice
+
+import io.github.poulad.practice.clazzes.Meeting
+import io.github.poulad.practice.clazzes.Student
+import io.github.poulad.practice.coroutine.demoCoroutine
+import io.github.poulad.practice.funs.TextBox
+import io.github.poulad.practice.funs.countUpTo
+import io.github.poulad.practice.funs.fib
+import io.github.poulad.practice.funs.plus
+import io.github.poulad.practice.generics.demoGenerics
+import io.github.poulad.practice.nullz.demoNull
+import io.github.poulad.practice.objekts.GeoLocation
+import io.github.poulad.practice.objekts.Objekt
 
 class Main {
     companion object {
