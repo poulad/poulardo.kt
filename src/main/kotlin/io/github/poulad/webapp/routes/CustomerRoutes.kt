@@ -1,5 +1,6 @@
 package io.github.poulad.webapp.routes
 
+import io.github.poulad.webapp.dao.dao
 import io.github.poulad.webapp.models.Customer
 import io.github.poulad.webapp.models.customerStorage
 import io.ktor.http.*
@@ -11,7 +12,7 @@ import io.ktor.server.routing.*
 fun Route.customerRouting() {
     route("$BASE_API_ROUTE_PREFIX/customers") {
         get {
-            call.respond(customerStorage)
+            call.respond(dao.allCustomers())
         }
 
         get("{id?}") {
@@ -26,8 +27,10 @@ fun Route.customerRouting() {
 
         post {
             val customerDto = call.receive<Customer>()
-            customerStorage.add(customerDto)
-            call.respond(HttpStatusCode.Created)
+            val customer = dao.addNewCustomer(customerDto.firstName, customerDto.lastName, customerDto.email)
+                ?: return@post call.respond(HttpStatusCode.NotAcceptable)
+
+            return@post call.respond(HttpStatusCode.Created, customer)
         }
 
         delete("{id?}") {
