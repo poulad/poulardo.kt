@@ -9,7 +9,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.customerRouting() {
-    route("/customers") {
+    route("$BASE_API_ROUTE_PREFIX/customers") {
         get {
             call.respond(customerStorage)
         }

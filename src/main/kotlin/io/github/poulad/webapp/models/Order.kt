@@ -8,6 +8,9 @@ data class Order(val number: String, val content: List<OrderItem>)
 @Serializable
 data class OrderItem(val item: String, val amount: Int, val price: Double)
 
+@Serializable
+data class OrderTotalDto(val total: Double)
+
 val orderStorage = listOf(
     Order(
         "2020-04-06-01", listOf(
