@@ -23,7 +23,7 @@ class ApplicationTest {
 
     @Test
     fun shouldCreateNewCustomer() = testApplication {
-        val response = client.post("/customers") {
+        val response = client.post("/api/customers") {
             setBody(
                 """
                 {
@@ -41,7 +41,7 @@ class ApplicationTest {
 
     @Test
     fun shouldGetTotalOfOrder() = testApplication {
-        val response = client.get("orders/2020-04-03-01/total")
+        val response = client.get("api/orders/2020-04-03-01/total")
 
         val orderTotalDto = Json.decodeFromString<OrderTotalDto>(response.bodyAsText())
 
