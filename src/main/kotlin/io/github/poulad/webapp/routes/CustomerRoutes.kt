@@ -10,7 +10,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.customerRouting() {
-    route("$BASE_API_ROUTE_PREFIX/customers") {
+    route("$BASE_API_ROUTE/customers") {
         get {
             call.respond(dao.allCustomers())
         }

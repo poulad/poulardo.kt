@@ -8,6 +8,9 @@ import io.ktor.server.application.*
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
+    // TODO install CallLogging plugin. https://ktor.io/docs/call-logging.html
+    // TODO install CORS plugin
+
     DatabaseFactory.init()
     configureRouting()
     configureSerialization()
