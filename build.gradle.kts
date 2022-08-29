@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-val ktorVersion = "2.0.3"
+val ktorVersion = "2.1.0"
 val exposedVersion = "0.39.2"
 
 dependencies {
@@ -26,6 +26,7 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages:$ktorVersion")
     implementation("io.ktor:ktor-server-default-headers:$ktorVersion")
     implementation("io.ktor:ktor-server-cors:$ktorVersion")
+    implementation("io.ktor:ktor-server-auth:$ktorVersion")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")

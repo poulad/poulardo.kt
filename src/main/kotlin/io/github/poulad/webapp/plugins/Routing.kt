@@ -1,9 +1,6 @@
 package io.github.poulad.webapp.plugins
 
-import io.github.poulad.webapp.routes.customerRouting
-import io.github.poulad.webapp.routes.getOrderRoute
-import io.github.poulad.webapp.routes.listOrderRoutes
-import io.github.poulad.webapp.routes.totalizeOrderRoute
+import io.github.poulad.webapp.routes.*
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
 import io.ktor.server.routing.*
@@ -15,6 +12,7 @@ fun Application.configureRouting() {
         listOrderRoutes()
         getOrderRoute()
         totalizeOrderRoute()
+        getStatsRoute()
 
         static("/") {
             staticRootFolder = File("assets")
