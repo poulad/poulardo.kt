@@ -47,7 +47,7 @@ tasks.withType<KotlinCompile> {
 }
 
 task("stage") {
-    println("this was added for Heroku")
+    println("""this was added for Heroku! ¯\_ (ツ)_/¯""")
 }
 
 application {
