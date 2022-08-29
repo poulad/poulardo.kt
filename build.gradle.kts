@@ -46,8 +46,9 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-task("stage") {
-    println("""this was added for Heroku! ¯\_ (ツ)_/¯""")
+// see https://ktor.io/docs/heroku.html#stage
+tasks {
+    create("stage").dependsOn("installDist")
 }
 
 application {
