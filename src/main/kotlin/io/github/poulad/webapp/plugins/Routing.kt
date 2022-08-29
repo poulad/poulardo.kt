@@ -21,5 +21,7 @@ fun Application.configureRouting() {
             files(".")
             default("index.html")
         }
+
+        // TODO: if (developmentMode) trace { application.log.trace(it.buildText()) }
     }
 }

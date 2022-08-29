@@ -15,7 +15,7 @@ fun Route.customerRouting() {
             call.respond(dao.allCustomers())
         }
 
-        get("{id?}") {
+        get("{id}") {
             val id = this.call.parameters["id"]
                 ?: return@get call.respond(HttpStatusCode.BadRequest)
 
@@ -33,7 +33,7 @@ fun Route.customerRouting() {
             return@post call.respond(HttpStatusCode.Created, customer)
         }
 
-        delete("{id?}") {
+        delete("{id}") {
             val id = call.parameters["id"]
                 ?: return@delete call.respond(HttpStatusCode.BadRequest)
 

@@ -8,17 +8,19 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
 fun Route.listOrderRoutes() {
-    get("$BASE_API_ROUTE/orders") {
-        if (orderStorage.isEmpty()) {
-            call.respond(HttpStatusCode.NoContent)
-            return@get
+
+    route("$BASE_API_ROUTE/orders", HttpMethod.Get) {
+        handle {
+            if (orderStorage.isEmpty()) {
+                return@handle call.respond(HttpStatusCode.NoContent)
+            }
+            return@handle call.respond(orderStorage)
         }
-        call.respond(orderStorage)
     }
 }
 
 fun Route.getOrderRoute() {
-    get("$BASE_API_ROUTE/orders/{id?}") {
+    get("$BASE_API_ROUTE/orders/{id}") {
         val id = call.parameters["id"]
             ?: return@get call.respond(HttpStatusCode.BadRequest)
 

@@ -46,6 +46,10 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+task("stage") {
+    println("this was added for Heroku")
+}
+
 application {
     mainClass.set("io.github.poulad.webapp.ApplicationKt")
 }
