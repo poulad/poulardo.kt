@@ -1,3 +1,2 @@
 rootProject.name = "poulardokt"
-include("practice")
-include("webapp")
+include("practice", "shared-lib", "webapp")

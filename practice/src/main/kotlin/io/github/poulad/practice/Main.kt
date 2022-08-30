@@ -57,6 +57,9 @@ class Main {
 
             demoGenerics()
             demoCoroutine()
+
+            val sharedLibObject = io.github.poulad.sharedlib.MyEntity(42, "my entity")
+            println("Depending on shared-lib module: $sharedLibObject")
         }
     }
 }
