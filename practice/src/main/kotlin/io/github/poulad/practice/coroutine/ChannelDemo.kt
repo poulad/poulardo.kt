@@ -5,7 +5,7 @@ package io.github.poulad.practice.coroutine
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
 
-fun main(args: Array<String>) = runBlocking<Unit> {
+fun main(@Suppress("UNUSED_PARAMETER") args: Array<String>) = runBlocking<Unit> {
     val channel = Channel<String>(capacity = Channel.BUFFERED);
     val sendChannel = channel as SendChannel<String>
     val receiveChannel = this.produceElements(sendChannel)
