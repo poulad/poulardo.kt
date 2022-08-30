@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ea312a1-0366-40c6-b200-c555680528b8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/shared-lib/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared-lib/src/main/kotlin/io/github/poulad/sharedlib/MyEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/practice/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/practice/src/main/kotlin/io/github/poulad/practice/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/practice/src/main/kotlin/io/github/poulad/practice/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/assets/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/main/kotlin/io/github/poulad/webapp/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/main/kotlin/io/github/poulad/webapp/Application.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/main/resources/application.conf" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/main/resources/application.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webapp/src/test/kotlin/io/github/poulad/webapp/ApplicationTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/src/test/kotlin/io/github/poulad/webapp/ApplicationTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +100,30 @@
       <recent name="io.github.poulad.webapp.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.Main">
+  <component name="RunManager" selected="Kotlin.ApplicationKt">
+    <configuration name="ApplicationTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":webapp:test" />
+            <option value="--tests" />
+            <option value="&quot;io.github.poulad.webapp.ApplicationTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="ApplicationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -126,7 +147,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ApplicationTest.shouldGetTotalOfOrder" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ApplicationTest.should return 404" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -137,9 +158,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value=":webapp:test" />
             <option value="--tests" />
-            <option value="&quot;io.github.poulad.webapp.ApplicationTest.shouldGetTotalOfOrder&quot;" />
+            <option value="&quot;io.github.poulad.webapp.ApplicationTest.should return 404&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -157,13 +178,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FlowDemoKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.github.poulad.practice.flows.FlowDemoKt" />
-      <module name="poulardokt.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.github.poulad.practice.Main" />
       <module name="poulardokt.practice.main" />
@@ -172,19 +186,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Gradle.ApplicationTest (1)" />
+      <item itemvalue="Gradle.ApplicationTest.should return 404" />
       <item itemvalue="Gradle.ApplicationTest" />
-      <item itemvalue="Gradle.ApplicationTest.shouldGetTotalOfOrder" />
       <item itemvalue="Kotlin.Main" />
       <item itemvalue="Kotlin.ApplicationKt" />
-      <item itemvalue="Kotlin.FlowDemoKt" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.Main" />
         <item itemvalue="Kotlin.ApplicationKt" />
+        <item itemvalue="Gradle.ApplicationTest (1)" />
+        <item itemvalue="Gradle.ApplicationTest.should return 404" />
+        <item itemvalue="Kotlin.Main" />
         <item itemvalue="Gradle.ApplicationTest" />
-        <item itemvalue="Gradle.ApplicationTest.shouldGetTotalOfOrder" />
-        <item itemvalue="Kotlin.FlowDemoKt" />
       </list>
     </recent_temporary>
   </component>

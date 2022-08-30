@@ -15,14 +15,14 @@ import kotlin.test.assertTrue
 class ApplicationTest {
 
     @Test
-    fun shouldReturn404() = testApplication {
+    fun `should return 404`() = testApplication {
         val response = client.post("/some-non-existing-page")
         assertEquals(HttpStatusCode.NotFound, response.status)
         assertTrue(response.bodyAsText().isEmpty())
     }
 
     @Test
-    fun shouldCreateNewCustomer() = testApplication {
+    fun `should create a new customer`() = testApplication {
         val response = client.post("/api/customers") {
             setBody(
                 """
@@ -40,7 +40,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun shouldGetTotalOfOrder() = testApplication {
+    fun `should get total of an order`() = testApplication {
         val response = client.get("api/orders/2020-04-03-01/total")
 
         val orderTotalDto = Json.decodeFromString<OrderTotalDto>(response.bodyAsText())
