@@ -1,1 +1,1 @@
-web: ./webapp/build/install/poulardokt/bin/poulardokt
+web: ./webapp/build/install/webapp/bin/webapp
