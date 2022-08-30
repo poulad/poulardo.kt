@@ -18,6 +18,7 @@ val ktorVersion = "2.1.0"
 val exposedVersion = "0.39.2"
 
 dependencies {
+    implementation(project(":shared-lib"))
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
@@ -26,6 +27,8 @@ dependencies {
     implementation("io.ktor:ktor-server-default-headers:$ktorVersion")
     implementation("io.ktor:ktor-server-cors:$ktorVersion")
     implementation("io.ktor:ktor-server-auth:$ktorVersion")
+    implementation("io.ktor:ktor-server-call-logging:$ktorVersion")
+    implementation("io.ktor:ktor-server-call-id:$ktorVersion")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")

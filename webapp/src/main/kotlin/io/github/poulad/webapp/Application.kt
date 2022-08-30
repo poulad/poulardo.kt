@@ -3,15 +3,20 @@ package io.github.poulad.webapp
 import io.github.poulad.webapp.dao.DatabaseFactory
 import io.github.poulad.webapp.plugins.configureRouting
 import io.github.poulad.webapp.plugins.configureSerialization
+import io.github.poulad.webapp.routes.BASE_API_ROUTE
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.auth.*
+import io.ktor.server.plugins.callid.*
+import io.ktor.server.plugins.callloging.*
+import io.ktor.server.request.*
 import io.ktor.util.*
 import kotlinx.coroutines.delay
+import org.slf4j.event.Level
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 fun Application.module() {
-    // TODO install CallLogging plugin. https://ktor.io/docs/call-logging.html
     // TODO install CORS plugin
 
     DatabaseFactory.init()
@@ -36,9 +41,16 @@ fun Application.module() {
             }
         }
     }
-}
 
-private suspend fun validateBasicAuth(credential: UserPasswordCredential): Principal? {
-    delay(1)
-    return UserIdPrincipal("admin")
+    install(CallId) {
+        retrieveFromHeader(HttpHeaders.XRequestId)
+        generate(10, "abcdefghijklmnopqrstuvwxyz0123456789+/=-")
+        replyToHeader(HttpHeaders.XRequestId)
+    }
+
+    install(CallLogging) {
+        level = Level.DEBUG
+        filter { call -> call.request.path().startsWith(BASE_API_ROUTE) }
+        callIdMdc()
+    }
 }
