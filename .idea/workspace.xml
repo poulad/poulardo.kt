@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ea312a1-0366-40c6-b200-c555680528b8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/controller/AuthorController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/model/Article.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/model/Author.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/service/AuthorRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/test/kotlin/io/github/poulad/someapp/service/AuthorRepositoryTests.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/someapp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/SomeappApplication.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/someapp/src/test/kotlin/io/github/poulad/someapp/SomeappApplicationTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/src/test/kotlin/io/github/poulad/someapp/SomeappApplicationTests.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/SomeappApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/SomeappApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/someapp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +74,22 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
@@ -82,17 +104,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/workspace/kotlin/poulardokt",
-    "settings.editor.selected.configurable": "terminal"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/workspace/kotlin/poulardokt/someapp/src/main/kotlin/io/github/poulad/someapp/model&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\kotlin\poulardokt\someapp\src\main\kotlin\io\github\poulad\someapp\model" />
       <recent name="C:\workspace\kotlin\poulardokt" />
       <recent name="C:\workspace\kotlin\poulardokt\src\test\resources" />
     </key>
@@ -103,7 +126,7 @@
       <recent name="io.github.poulad.webapp.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.ApplicationKt">
+  <component name="RunManager" selected="Gradle.AuthorRepositoryTests">
     <configuration name="ApplicationTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -127,7 +150,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ApplicationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="AuthorRepositoryTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -138,9 +161,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value=":someapp:test" />
             <option value="--tests" />
-            <option value="&quot;io.github.poulad.webapp.ApplicationTest&quot;" />
+            <option value="&quot;io.github.poulad.someapp.service.AuthorRepositoryTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -150,7 +173,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ApplicationTest.should return 404" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SomeAppApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -161,9 +184,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":webapp:test" />
+            <option value=":someapp:test" />
             <option value="--tests" />
-            <option value="&quot;io.github.poulad.webapp.ApplicationTest.should return 404&quot;" />
+            <option value="&quot;io.github.poulad.someapp.SomeAppApplicationTests&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -181,27 +204,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.github.poulad.practice.Main" />
-      <module name="poulardokt.practice.main" />
+    <configuration name="SomeAppApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="io.github.poulad.someapp.SomeAppApplicationKt" />
+      <module name="poulardokt.someapp.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
+      <item itemvalue="Gradle.AuthorRepositoryTests" />
+      <item itemvalue="Gradle.SomeAppApplicationTests" />
       <item itemvalue="Gradle.ApplicationTest (1)" />
-      <item itemvalue="Gradle.ApplicationTest.should return 404" />
-      <item itemvalue="Gradle.ApplicationTest" />
-      <item itemvalue="Kotlin.Main" />
+      <item itemvalue="Kotlin.SomeAppApplicationKt" />
       <item itemvalue="Kotlin.ApplicationKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AuthorRepositoryTests" />
+        <item itemvalue="Gradle.SomeAppApplicationTests" />
+        <item itemvalue="Kotlin.SomeAppApplicationKt" />
         <item itemvalue="Kotlin.ApplicationKt" />
         <item itemvalue="Gradle.ApplicationTest (1)" />
-        <item itemvalue="Gradle.ApplicationTest.should return 404" />
-        <item itemvalue="Kotlin.Main" />
-        <item itemvalue="Gradle.ApplicationTest" />
       </list>
     </recent_temporary>
   </component>
