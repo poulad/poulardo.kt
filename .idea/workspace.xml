@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ea312a1-0366-40c6-b200-c555680528b8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/controller/SimpleController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/model/AuthorCreationDto.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/someapp/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/controller/AuthorController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/src/main/kotlin/io/github/poulad/someapp/controller/AuthorController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/someapp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/someapp/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +121,7 @@
       <recent name="io.github.poulad.webapp.dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.AuthorRepositoryTests">
+  <component name="RunManager" selected="Kotlin.SomeAppApplicationKt">
     <configuration name="ApplicationTest (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -211,9 +215,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.SomeAppApplicationKt" />
         <item itemvalue="Gradle.AuthorRepositoryTests" />
         <item itemvalue="Gradle.SomeAppApplicationTests" />
-        <item itemvalue="Kotlin.SomeAppApplicationKt" />
         <item itemvalue="Kotlin.ApplicationKt" />
         <item itemvalue="Gradle.ApplicationTest (1)" />
       </list>
