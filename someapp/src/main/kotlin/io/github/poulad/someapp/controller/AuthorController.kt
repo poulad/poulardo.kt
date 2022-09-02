@@ -4,10 +4,9 @@ import io.github.poulad.someapp.model.Author
 import io.github.poulad.someapp.model.AuthorCreationDto
 import io.github.poulad.someapp.service.AuthorRepository
 import kotlinx.coroutines.delay
-import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.server.ResponseStatusException
 
 @Controller
 @RequestMapping("api/authors")
@@ -16,23 +15,26 @@ class AuthorController(
 ) {
 
     @GetMapping
-    fun getAuthors(): List<Author> {
-        return authorRepository.findAll()
-            .map { it as Author }
-            .toList()
+    fun getAuthors(): ResponseEntity<List<Author>> {
+        val allAuthorsList = authorRepository.findAll().map { it as Author }.toList()
+        return ResponseEntity.ok(allAuthorsList)
     }
 
     @GetMapping("{login}")
-    suspend fun getAuthorByLogin(@PathVariable login: String): Author {
+    suspend fun getAuthorByLogin(@PathVariable login: String): ResponseEntity<Author> {
         delay(100)
         val author = authorRepository.findByLogin(login)
-        return author ?: throw ResponseStatusException(HttpStatus.NOT_FOUND)
+        return if (author != null) {
+            ResponseEntity.ok(author)
+        } else {
+            ResponseEntity.notFound().build()
+        }
     }
 
     @PostMapping
-    suspend fun createAuthor(@RequestBody(required = true) dto: AuthorCreationDto): Author {
+    suspend fun createAuthor(@RequestBody(required = true) dto: AuthorCreationDto): ResponseEntity<Author> {
         val authorModel = Author(null, dto.login, dto.firstName, dto.lastName)
         authorRepository.save(authorModel)
-        return authorModel
+        return ResponseEntity.accepted().body(authorModel)
     }
 }
