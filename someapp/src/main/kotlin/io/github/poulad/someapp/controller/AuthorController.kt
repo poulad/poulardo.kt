@@ -16,8 +16,7 @@ class AuthorController(
 ) {
 
     @GetMapping
-    suspend fun getAuthors(): List<Author> {
-        delay(400)
+    fun getAuthors(): List<Author> {
         return authorRepository.findAll()
             .map { it as Author }
             .toList()
