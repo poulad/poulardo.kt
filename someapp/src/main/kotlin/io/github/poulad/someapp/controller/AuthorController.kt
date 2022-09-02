@@ -7,6 +7,7 @@ import kotlinx.coroutines.delay
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import java.net.URI
 
 @Controller
 @RequestMapping("api/authors")
@@ -35,6 +36,6 @@ class AuthorController(
     suspend fun createAuthor(@RequestBody(required = true) dto: AuthorCreationDto): ResponseEntity<Author> {
         val authorModel = Author(null, dto.login, dto.firstName, dto.lastName)
         authorRepository.save(authorModel)
-        return ResponseEntity.accepted().body(authorModel)
+        return ResponseEntity.created(URI.create("https://example.com")).body(authorModel)
     }
 }

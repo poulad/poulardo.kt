@@ -16,10 +16,4 @@ class SimpleController {
         return ResponseEntity.ok("Hello, World!")
     }
 
-    @GetMapping("/api/hello-world2")
-    fun getSimpleText2(): String {
-        logger.debug("about to say hello world2")
-        return "Hello, World! 2"
-    }
-
 }
