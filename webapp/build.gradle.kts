@@ -49,10 +49,11 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+// DISABLED: not deploying this to Heroku for now
 // see https://ktor.io/docs/heroku.html#stage
-tasks {
-    create("stage").dependsOn("installDist")
-}
+//tasks {
+//    create("stage").dependsOn("installDist")
+//}
 
 application {
     mainClass.set("io.github.poulad.webapp.ApplicationKt")

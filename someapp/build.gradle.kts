@@ -57,6 +57,11 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+// for Heroku deployment
+tasks {
+    create("stage").dependsOn("installDist")
+}
+
 application {
     mainClass.set("io.github.poulad.someapp.SomeAppApplicationKt")
 }

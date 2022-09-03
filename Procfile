@@ -1,1 +1,1 @@
-web: ./webapp/build/install/webapp/bin/webapp
+web: ./someapp/build/install/someapp/bin/someapp
