@@ -20,10 +20,14 @@ class InitConfiguration {
             return@ApplicationRunner
         }
 
+        seedAuthorsData(authorRepository)
+        logger.debug("Seeding test data is completed successfully.")
+    }
+
+    private fun seedAuthorsData(authorRepository: AuthorRepository) {
         val juergen = Author(null, "springjuergen", "Juergen", "Hoeller")
         val john = Author(null, "bestseller", "John", "Smith")
-        authorRepository.saveAll(listOf(juergen, john))
 
-        logger.debug("Seeding test data is completed successfully.")
+        authorRepository.saveAll(listOf(juergen, john))
     }
 }

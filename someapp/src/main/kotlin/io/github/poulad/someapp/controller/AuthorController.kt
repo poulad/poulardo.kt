@@ -36,6 +36,6 @@ class AuthorController(
     suspend fun createAuthor(@RequestBody(required = true) dto: AuthorCreationDto): ResponseEntity<Author> {
         val authorModel = Author(null, dto.login, dto.firstName, dto.lastName)
         authorRepository.save(authorModel)
-        return ResponseEntity.created(URI.create("https://example.com")).body(authorModel)
+        return ResponseEntity.created(URI.create("/api/authors/${dto.login}")).body(authorModel)
     }
 }

@@ -14,9 +14,12 @@ repositories {
     mavenCentral()
 }
 
+val arrowVersion = "1.1.2"
+
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation(project(":shared-lib"))
+    implementation("io.arrow-kt:arrow-core:$arrowVersion")
 
     testImplementation(kotlin("test"))
 }
