@@ -58,8 +58,11 @@ tasks.withType<Test> {
 }
 
 // for Heroku deployment
+// see https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku#verify-that-your-build-file-is-set-up-correctly
 tasks {
-    create("stage").dependsOn("installDist")
+    create("stage").dependsOn("build", "clean")
+    getTasksByName("build", false).first()
+        .mustRunAfter("clean")
 }
 
 application {
