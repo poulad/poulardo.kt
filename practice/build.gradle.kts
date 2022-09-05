@@ -1,9 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-plugins {
-    kotlin("jvm") version "1.7.10"
-    kotlin("plugin.serialization") version "1.7.10"
+val kotlinVersion = "${rootProject.ext["kotlinVersion"]}"
 
+plugins {
+    kotlin("jvm")
+    kotlin("plugin.serialization") version "1.6.21" // TODO: use kotlinVersion variable
     application
 }
 
