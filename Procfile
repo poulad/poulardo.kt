@@ -1,9 +1,9 @@
 # for SpringBoot app:
-web: java $JAVA_OPTS -jar ./someapp/build/libs/someapp-0.0.1-SNAPSHOT.jar
+# web: java $JAVA_OPTS -jar ./someapp/build/libs/someapp-0.0.1-SNAPSHOT.jar
 
 
 # for Ktor app:
-# web: ./webapp/build/install/webapp/bin/webapp
+web: ./webapp/build/install/webapp/bin/webapp
 
 
 # for BeeGee-Worker service:
