@@ -8,6 +8,7 @@ plugins {
     kotlin("plugin.jpa") version "1.6.21"
     kotlin("plugin.allopen") version "1.6.21"
     application
+    distribution
 }
 
 group = "io.github.poulad"
@@ -57,12 +58,8 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
-// for Heroku deployment
-// see https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku#verify-that-your-build-file-is-set-up-correctly
-tasks {
-    create("stage").dependsOn("build", "clean")
-    getTasksByName("build", false).first()
-        .mustRunAfter("clean")
+tasks.build {
+    finalizedBy("installDist")
 }
 
 application {

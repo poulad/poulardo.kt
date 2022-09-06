@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.6.21"
     application
+    distribution
 }
 
 group = "io.github.poulad"
@@ -39,6 +40,10 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "17"
     }
+}
+
+tasks.build {
+    finalizedBy("installDist")
 }
 
 application {

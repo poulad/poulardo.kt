@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.6.21"
     application
+    distribution
 }
 
 group = "io.github.poulad"
@@ -48,11 +49,17 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-// DISABLED: not deploying this to Heroku for now
+// NOTE: If not deploying this app to Heroku, comment out this stage to save build time.
 // see https://ktor.io/docs/heroku.html#stage
 //tasks {
 //    create("stage").dependsOn("installDist")
 //}
+
+// Distribution plugin makes a single binary to run the app at "./webapp/build/install/webapp/bin/webapp".
+// See https://docs.gradle.org/current/userguide/distribution_plugin.html
+tasks.build {
+    finalizedBy("installDist")
+}
 
 application {
     mainClass.set("io.github.poulad.webapp.ApplicationKt")
