@@ -10,7 +10,7 @@ private val logger = LoggerFactory.getLogger("RabbitMQDemo")
 private const val CONSUMER_QUEUE_NAME = "myQueue"
 
 suspend fun demoRabbitMQ() {
-    val rabbitMqUri = System.getenv("beegee-worker.rabbitmq.uri")
+    val rabbitMqUri = System.getenv("PLD_RABBITMQ_URI")
         ?: System.getProperty("beegee-worker.rabbitmq.uri")
         ?: throw Exception("RabbitMQ URI is not found")
 

@@ -4,15 +4,16 @@ import io.github.crackthecodeabhi.kreds.connection.Endpoint
 import io.github.crackthecodeabhi.kreds.connection.newClient
 import io.github.crackthecodeabhi.kreds.connection.shutdown
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main(): Unit = runBlocking {
     println("Hello, World!")
     showEnv()
-    //   launch { demoRabbitMQ() }
-//    launch {
-//        demo()
-//    }
+    launch {
+        demoRedis()
+        demoRabbitMQ()
+    }
 }
 
 fun showEnv() {
@@ -25,16 +26,16 @@ fun showEnv() {
 
 
 suspend fun demoRedis() {
-    val host = System.getenv("beegee-worker.redis.host")
+    val host = System.getenv("PLD_REDIS_HOST")
         ?: System.getProperty("beegee-worker.redis.host")
         ?: "localhost"
-    val port = System.getenv("beegee-worker.redis.port")
+    val port = System.getenv("PLD_REDIS_PORT")
         ?: System.getProperty("beegee-worker.redis.port")
         ?: "6379"
-    val user = System.getenv("beegee-worker.redis.user")
+    val user = System.getenv("PLD_REDIS_USER")
         ?: System.getProperty("beegee-worker.redis.user")
         ?: "user"
-    val pass = System.getenv("beegee-worker.redis.pass")
+    val pass = System.getenv("PLD_REDIS_PASS")
         ?: System.getProperty("beegee-worker.redis.pass")
         ?: ""
 
