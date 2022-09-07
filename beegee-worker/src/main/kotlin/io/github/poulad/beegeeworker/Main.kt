@@ -9,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 fun main(): Unit = runBlocking {
     println("Hello, World!")
     showEnv()
+    //   launch { demoRabbitMQ() }
 //    launch {
 //        demo()
 //    }
@@ -22,7 +23,8 @@ fun showEnv() {
         .forEach(::println)
 }
 
-suspend fun demo() {
+
+suspend fun demoRedis() {
     val host = System.getenv("beegee-worker.redis.host")
         ?: System.getProperty("beegee-worker.redis.host")
         ?: "localhost"
