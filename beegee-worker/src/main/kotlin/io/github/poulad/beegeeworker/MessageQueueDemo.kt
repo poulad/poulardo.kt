@@ -10,12 +10,10 @@ private val logger = LoggerFactory.getLogger("RabbitMQDemo")
 private const val CONSUMER_QUEUE_NAME = "myQueue"
 
 suspend fun demoRabbitMQ() {
-    val rabbitMqUri = System.getenv("PLD_RABBITMQ_URI")
-        ?: System.getProperty("beegee-worker.rabbitmq.uri")
-        ?: throw Exception("RabbitMQ URI is not found")
+    val rabbitMQUri = getConfigurationItem("PLD_RABBITMQ_URI", "beegee-worker.rabbitmq.uri")
 
     val connection = ConnectionFactory().apply {
-        setUri(rabbitMqUri)
+        setUri(rabbitMQUri)
         useNio()
     }.newConnection("beegee-worker-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
         ?: throw Exception("Failed to create a connection")
