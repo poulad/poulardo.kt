@@ -1,4 +1,4 @@
-package io.github.poulad.beegeeworker.service
+package io.github.poulad.somebeegeeworker.service
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking

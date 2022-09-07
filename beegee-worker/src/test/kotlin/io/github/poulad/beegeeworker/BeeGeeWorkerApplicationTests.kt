@@ -1,13 +1,13 @@
 package io.github.poulad.beegeeworker
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest
 class BeeGeeWorkerApplicationTests {
 
     @Test
-    fun contextLoads() {
+    fun `should pass`() {
+        assertEquals(1, "1".toInt())
     }
 
 }

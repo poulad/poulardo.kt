@@ -1,4 +1,4 @@
-package io.github.poulad.beegeeworker.service
+package io.github.poulad.somebeegeeworker.service
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.stereotype.Service

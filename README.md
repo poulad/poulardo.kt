@@ -6,6 +6,13 @@ Learning Kotlin
 
 See dependency tree of a sub-project:
 
-```bash
+```shell
 ./gradlew :shared-lib:dependencies --configuration runtimeClasspath
+```
+
+Start and stop the background worker process:
+
+```shell
+heroku scale --app poulardo worker=1
+heroku scale --app poulardo worker=0
 ```

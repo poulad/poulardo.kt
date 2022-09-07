@@ -1,6 +1,6 @@
-package io.github.poulad.beegeeworker.config
+package io.github.poulad.somebeegeeworker.config
 
-import io.github.poulad.beegeeworker.service.MessageConsumerService
+import io.github.poulad.somebeegeeworker.service.MessageConsumerService
 import org.springframework.amqp.rabbit.connection.ConnectionFactory
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter
