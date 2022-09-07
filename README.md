@@ -16,3 +16,9 @@ Start and stop the background worker process:
 heroku scale --app poulardo worker=1
 heroku scale --app poulardo worker=0
 ```
+
+Read dyno logs:
+
+```shell
+heroku logs --app poulardo --dyno worker --tail
+```

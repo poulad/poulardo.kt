@@ -4,14 +4,22 @@ import io.github.crackthecodeabhi.kreds.connection.Endpoint
 import io.github.crackthecodeabhi.kreds.connection.newClient
 import io.github.crackthecodeabhi.kreds.connection.shutdown
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 fun main(): Unit = runBlocking {
     println("Hello, World!")
-    launch {
-        demo()
-    }
+    showEnv()
+//    launch {
+//        demo()
+//    }
+}
+
+fun showEnv() {
+    val env = System.getenv()
+    env.keys.filterNotNull()
+        .map { "$it=${env[it] ?: ""}" }
+        .sorted()
+        .forEach(::println)
 }
 
 suspend fun demo() {
