@@ -16,11 +16,9 @@ repositories {
 val coroutinesVersion = "1.6.4"
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("io.github.crackthecodeabhi:kreds:0.8")
-
+    implementation("ch.qos.logback:logback-classic:1.2.11")
     testImplementation(kotlin("test"))
 }
 
@@ -40,5 +38,5 @@ tasks.build {
 }
 
 application {
-    mainClass.set("io.github.poulad.beegeeworker.BeeGeeWorkerApplicationKt")
+    mainClass.set("io.github.poulad.beegeeworker.MainKt")
 }
