@@ -19,10 +19,10 @@ class RedisRepository private constructor(
 
     companion object {
         suspend fun new(): RedisRepository {
-            val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "beegee-worker.redis.host")
-            val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "beegee-worker.redis.port")
-            val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "beegee-worker.redis.user")
-            val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "beegee-worker.redis.pass")
+            val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "webapp.redis.host")
+            val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "webapp.redis.port")
+            val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "webapp.redis.user")
+            val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "webapp.redis.pass")
 
             val redisClient = newClient(Endpoint.from("$host:$port")).apply {
                 auth(user, pass)
@@ -41,6 +41,13 @@ class RedisRepository private constructor(
             allCustomersList.add(customer)
         }
         return listOf(*allCustomersList.toTypedArray()) // returning an immutable list
+    }
+
+    suspend fun getCustomerById(id: String): Customer? {
+        val customerJson = redisClient.get(EntityCachePrefix.CUSTOMER.getKey(id))
+            ?: return null
+
+        return Json.decodeFromString<Customer>(customerJson)
     }
 
     suspend fun addNewCustomer(customer: Customer) {
