@@ -1,6 +1,7 @@
 package io.github.poulad.webapp.queue
 
 
+import com.rabbitmq.client.Connection
 import com.rabbitmq.client.ConnectionFactory
 import com.rabbitmq.client.MessageProperties
 import com.viartemev.thewhiterabbit.channel.confirmChannel
@@ -10,21 +11,30 @@ import io.github.poulad.sharedlib.config.getConfigurationItemOrDefault
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import kotlin.random.Random
 
-class QueueProducerService(
-    private val logger: Logger
-) {
+class QueueProducerService private constructor(
+    private var connection: Connection,
+    private val logger: Logger,
+) : AutoCloseable {
+
+    companion object {
+        fun new(): QueueProducerService {
+            val rabbitMQUri = getConfigurationItemOrDefault("PLD_RABBITMQ_URI", "webapp.rabbitmq.uri")
+
+            val connection = ConnectionFactory().apply {
+                setUri(rabbitMQUri)
+                useNio()
+            }.newConnection("webapp-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
+                ?: throw Exception("Failed to create a connection")
+
+            val logger = LoggerFactory.getLogger(QueueProducerService::class.java)!!
+            return QueueProducerService(connection, logger)
+        }
+    }
 
     suspend fun demoRabbitMQ() {
-        val rabbitMQUri = getConfigurationItemOrDefault("PLD_RABBITMQ_URI", "webapp.rabbitmq.uri")
-
-        val connection = ConnectionFactory().apply {
-            setUri(rabbitMQUri)
-            useNio()
-        }.newConnection("webapp-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
-            ?: throw Exception("Failed to create a connection")
-
         logger.debug("RabbitMQ connection \"${connection.clientProvidedName}\" is established")
 
         connection.confirmChannel {
@@ -37,5 +47,9 @@ class QueueProducerService(
                 }
             }
         }
+    }
+
+    override fun close() {
+        connection.close()
     }
 }

@@ -10,7 +10,6 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.slf4j.LoggerFactory
 
 fun Route.customerRouting() {
     route("$BASE_API_ROUTE/customers") {
@@ -29,7 +28,7 @@ fun Route.customerRouting() {
                 ?: return@get call.respond(HttpStatusCode.NotFound)
 
             // TODO remove this
-            QueueProducerService(LoggerFactory.getLogger(QueueProducerService::class.java)).demoRabbitMQ()
+            QueueProducerService.new().demoRabbitMQ()
 
             call.respond(customer)
         }
