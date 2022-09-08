@@ -12,6 +12,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    @Suppress("DEPRECATION") jcenter() // used for "com.viartemev:the-white-rabbit" package.
 }
 
 val ktorVersion = "2.1.0"
@@ -34,6 +35,8 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
+    implementation("io.github.crackthecodeabhi:kreds:0.8")
+    implementation("com.viartemev:the-white-rabbit:0.0.6")
     implementation("com.h2database:h2:2.1.214")
 
     testImplementation(kotlin("test"))

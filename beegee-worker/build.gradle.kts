@@ -17,6 +17,7 @@ repositories {
 val coroutinesVersion = "1.6.4"
 
 dependencies {
+    implementation(project(":shared-lib"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("io.github.crackthecodeabhi:kreds:0.8")
     implementation("com.viartemev:the-white-rabbit:0.0.6")

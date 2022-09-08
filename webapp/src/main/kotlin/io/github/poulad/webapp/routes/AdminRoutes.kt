@@ -9,7 +9,6 @@ import io.ktor.server.routing.*
 import kotlinx.coroutines.*
 import java.util.*
 
-
 @OptIn(ExperimentalCoroutinesApi::class)
 fun Route.getStatsRoute() {
     authenticate("auth-basic") {
