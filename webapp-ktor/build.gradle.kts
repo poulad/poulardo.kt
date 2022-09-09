@@ -52,6 +52,11 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+tasks.withType<Test>().configureEach {
+    reports.html.required.set(false)
+    reports.junitXml.required.set(false)
+}
+
 // NOTE: If not deploying this app to Heroku, comment out this stage to save build time.
 // see https://ktor.io/docs/heroku.html#stage
 //tasks {
