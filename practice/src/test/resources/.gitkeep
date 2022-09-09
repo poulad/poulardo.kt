@@ -5,6 +5,6 @@ ktor {
         maxHeaderSize = 1024
     }
     application {
-        modules = [ io.github.poulad.webapp.ApplicationKt.module ]
+        modules = [ io.github.poulad.webappktor.ApplicationKt.module ]
     }
 }

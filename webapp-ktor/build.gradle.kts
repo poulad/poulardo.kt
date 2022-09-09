@@ -65,5 +65,5 @@ tasks.build {
 }
 
 application {
-    mainClass.set("io.github.poulad.webapp.ApplicationKt")
+    mainClass.set("io.github.poulad.webappktor.KtorWebAppKt")
 }

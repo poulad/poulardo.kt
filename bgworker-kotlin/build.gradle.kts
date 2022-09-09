@@ -47,5 +47,5 @@ tasks.build {
 }
 
 application {
-    mainClass.set("io.github.poulad.beegeeworker.MainKt")
+    mainClass.set("io.github.poulad.beegeeworker.BGWorkerKTAppKt")
 }

@@ -63,5 +63,5 @@ tasks.build {
 }
 
 application {
-    mainClass.set("io.github.poulad.someapp.SomeAppApplicationKt")
+    mainClass.set("io.github.poulad.webappspring.SpringWebAppKt")
 }
