@@ -1,5 +1,4 @@
-//package io.github.poulad.webappwasm
-
 fun main(): Unit {
-    println("Hello, World of WASM!")
+    println("Hello, World from WASM!")
+    kotlinx.
 }

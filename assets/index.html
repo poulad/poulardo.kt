@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pouladrdo.kt</title>
     <link rel="icon" type="image/x-icon" href="/logo.png">
 </head>
@@ -11,11 +14,19 @@
 <div><img src="/logo.png" alt="website logo"></div>
 <hr>
 
+<div>
+    <h5>Some Kotlin/Native magic with WASM here</h5>
+    <button id="counterIncBtn" type="button">Increment Counter</button>
+    <p><label id="counterLbl">0</label></p>
+</div>
+<hr>
 
 <div>
     <h5>A random image from Unsplash:</h5>
     <img src="https://source.unsplash.com/random/800x600" alt="a random image" width="800" height="600">
 </div>
+
+<script wasm="/webapp_wasm.wasm" src="/webapp_wasm.wasm.js"></script>
 
 </body>
 </html>
