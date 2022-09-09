@@ -6,6 +6,7 @@ include(
     "practice",
     "webapp-ktor",
     "webapp-spring",
+    "webapp-wasm",
     "bgworker-kotlin",
     "bgworker-spring"
 )
