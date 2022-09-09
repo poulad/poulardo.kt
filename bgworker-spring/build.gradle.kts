@@ -47,5 +47,5 @@ tasks.build {
 }
 
 application {
-    mainClass.set("io.github.poulad.somebeegeeworker.BGWorkerSpringAppKt")
+    mainClass.set("io.github.poulad.bgworkerspring.BGWorkerSpringAppKt")
 }
