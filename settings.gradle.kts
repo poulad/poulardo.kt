@@ -1,2 +1,11 @@
 rootProject.name = "poulardokt"
-include("practice", "shared-lib", "webapp", "someapp", "beegee-worker", "some-beegee-worker")
+
+include(
+    "shared-lib-kotlin",
+    "shared-lib-java",
+    "practice",
+    "webapp-ktor",
+    "webapp-spring",
+    "bgworker-kotlin",
+    "bgworker-spring"
+)

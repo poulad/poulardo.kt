@@ -1,10 +1,10 @@
 # for SpringBoot app:
-# web: ./someapp/build/install/someapp/bin/someapp
+# web: ./webapp-spring/build/install/webapp-spring/bin/webapp-spring
 
 
 # for Ktor app:
-web: ./webapp/build/install/webapp/bin/webapp
+web: ./webapp-ktor/build/install/webapp-ktor/bin/webapp-ktor
 
 
-# for BeeGee-Worker service:
-worker: ./beegee-worker/build/install/beegee-worker/bin/beegee-worker
+# for Background Worker service:
+worker: ./bgworker-kotlin/build/install/bgworker-kotlin/bin/bgworker-kotlin
