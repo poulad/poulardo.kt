@@ -1,7 +1,7 @@
 package io.github.poulad.webappktor.dao
 
-import io.github.poulad.webappktor.models.Customer
-import io.github.poulad.webappktor.models.Customers
+import io.github.poulad.sharedlibkt.model.Customer
+import io.github.poulad.sharedlibkt.model.Customers
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.insert

@@ -4,4 +4,11 @@ plugins {
     kotlin("jvm") version "1.6.21" apply false
 }
 
-ext["kotlinVersion"] = "1.6.21"
+allprojects {
+    ext {
+        this["kotlin_version"] = "1.6.21"
+        this["kotlinx_coroutine_version"] = "1.6.4"
+        this["ktor_client_version"] = "2.1.0"
+        this["exposed_orm_version"] = "0.39.2"
+    }
+}

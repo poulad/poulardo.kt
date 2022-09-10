@@ -16,10 +16,11 @@ repositories {
 }
 
 val ktorVersion = "2.1.0"
-val exposedVersion = "0.39.2"
+val exposedOrmVersion = "0.39.2"
 
 dependencies {
     implementation(project(":shared-lib-kotlin"))
+    implementation(project(":shared-lib-java"))
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-server-content-negotiation:$ktorVersion")
@@ -32,10 +33,9 @@ dependencies {
     implementation("io.ktor:ktor-server-call-id:$ktorVersion")
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("ch.qos.logback:logback-classic:1.2.11")
-    implementation("org.jetbrains.exposed:exposed-core:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-dao:$exposedVersion")
-    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
-    implementation("io.github.crackthecodeabhi:kreds:0.8")
+    implementation("org.jetbrains.exposed:exposed-core:$exposedOrmVersion")
+    implementation("org.jetbrains.exposed:exposed-dao:$exposedOrmVersion")
+    implementation("org.jetbrains.exposed:exposed-jdbc:$exposedOrmVersion")
     implementation("com.viartemev:the-white-rabbit:0.0.6")
     implementation("com.h2database:h2:2.1.214")
 

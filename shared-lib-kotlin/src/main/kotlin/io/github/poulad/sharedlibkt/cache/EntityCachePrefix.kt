@@ -1,4 +1,4 @@
-package io.github.poulad.webappktor.cache
+package io.github.poulad.sharedlibkt.cache
 
 internal enum class EntityCachePrefix(val prefix: String) {
     CUSTOMER("customer_"),

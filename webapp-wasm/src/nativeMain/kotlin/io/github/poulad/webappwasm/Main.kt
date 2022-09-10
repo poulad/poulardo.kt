@@ -1,9 +1,9 @@
 fun main(): Unit {
     println("Hello, World from WASM!")
-    alert("<Alert> Hello, World from WASM!")
+//    alert("<Alert> Hello, World from WASM!")
 }
 
-external fun alert(message: Any?): Unit
+// external fun alert(message: Any?): Unit
 
 //external class Node {
 //    val firstChild: Node

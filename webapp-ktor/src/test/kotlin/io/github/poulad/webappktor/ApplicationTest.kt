@@ -1,6 +1,6 @@
 package io.github.poulad.webappktor
 
-import io.github.poulad.webappktor.models.OrderTotalDto
+import io.github.poulad.sharedlibkt.model.OrderTotalDto
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*

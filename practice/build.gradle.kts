@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "${rootProject.ext["kotlinVersion"]}"
+val kotlinVersion = "${rootProject.ext["kotlin_version"]}"
 
 plugins {
     kotlin("jvm")

@@ -1,7 +1,7 @@
 package io.github.poulad.webappktor.routes
 
-import io.github.poulad.webappktor.models.OrderTotalDto
-import io.github.poulad.webappktor.models.orderStorage
+import io.github.poulad.sharedlibkt.model.OrderTotalDto
+import io.github.poulad.sharedlibkt.model.orderStorage
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*

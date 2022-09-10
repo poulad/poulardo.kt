@@ -1,9 +1,9 @@
 package io.github.poulad.webappktor.routes
 
-import io.github.poulad.webappktor.cache.RedisRepository
+import io.github.poulad.sharedlibkt.cache.RedisRepository
+import io.github.poulad.sharedlibkt.model.Customer
+import io.github.poulad.sharedlibkt.model.customerStorage
 import io.github.poulad.webappktor.dao.dao
-import io.github.poulad.webappktor.models.Customer
-import io.github.poulad.webappktor.models.customerStorage
 import io.github.poulad.webappktor.queue.QueueProducerService
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -28,7 +28,7 @@ fun Route.customerRouting() {
                 ?: return@get call.respond(HttpStatusCode.NotFound)
 
             // TODO remove this
-            QueueProducerService.new().demoRabbitMQ()
+            QueueProducerService.new().publishMessage(id)
 
             call.respond(customer)
         }

@@ -1,11 +1,11 @@
-package io.github.poulad.webappktor.cache
+package io.github.poulad.sharedlibkt.cache
 
 import io.github.crackthecodeabhi.kreds.args.SetOption
 import io.github.crackthecodeabhi.kreds.connection.Endpoint
 import io.github.crackthecodeabhi.kreds.connection.KredsClient
 import io.github.crackthecodeabhi.kreds.connection.newClient
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
-import io.github.poulad.webappktor.models.Customer
+import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

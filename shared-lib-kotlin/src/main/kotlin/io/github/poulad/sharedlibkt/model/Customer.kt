@@ -1,4 +1,4 @@
-package io.github.poulad.webappktor.models
+package io.github.poulad.sharedlibkt.model
 
 import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.sql.Table

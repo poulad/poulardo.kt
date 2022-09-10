@@ -7,6 +7,7 @@ import com.rabbitmq.client.MessageProperties
 import com.viartemev.thewhiterabbit.channel.confirmChannel
 import com.viartemev.thewhiterabbit.channel.publish
 import com.viartemev.thewhiterabbit.publisher.OutboundMessage
+import io.github.poulad.sharedlibjava.queue.QueueName
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -31,6 +32,32 @@ class QueueProducerService private constructor(
 
             val logger = LoggerFactory.getLogger(QueueProducerService::class.java)!!
             return QueueProducerService(connection, logger)
+        }
+    }
+
+    suspend fun ensureConnected(): Unit {
+        TODO()
+    }
+
+    suspend fun publishMessage(message: String): Unit {
+        connection.confirmChannel {
+            use {
+                publish {
+                    coroutineScope {
+                        val msg = OutboundMessage(
+                            "",
+                            QueueName.MY_QUEUE.queueName,
+                            MessageProperties.PERSISTENT_TEXT_PLAIN,
+                            message
+                        )
+                        val isPublishedSuccessfully = publishWithConfirm(msg)
+                        if (!isPublishedSuccessfully) {
+                            throw Exception("Message was not published successfully to the queue")
+                        }
+                        logger.debug("Published message: `$message`")
+                    }
+                }
+            }
         }
     }
 

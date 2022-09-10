@@ -1,6 +1,6 @@
 package io.github.poulad.webappktor.dao
 
-import io.github.poulad.webappktor.models.Customer
+import io.github.poulad.sharedlibkt.model.Customer
 
 interface DAOFacade {
     suspend fun allCustomers(): List<Customer>
