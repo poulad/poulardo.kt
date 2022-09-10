@@ -22,3 +22,10 @@ Read dyno logs:
 ```shell
 heroku logs --app poulardo --dyno worker --tail
 ```
+
+Build and prepare WASM files for serve:
+
+```shell
+./gradlew nativeBinaries
+cp -vf ./webapp-wasm/build/bin/native/releaseExecutable/* ./assets/
+```

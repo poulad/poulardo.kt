@@ -12,8 +12,8 @@ repositories {
 val kotlinxHtmlVersion = "0.8.0"
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
-    implementation("org.jetbrains.kotlinx:kotlinx-html-js:$kotlinxHtmlVersion")
+//    implementation(kotlin("stdlib-js"))
+//    implementation("org.jetbrains.kotlinx:kotlinx-html-js:$kotlinxHtmlVersion")
 //    implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:$kotlinxHtmlVersion")
 //    implementation("org.jetbrains.kotlinx:kotlinx-html:$kotlinxHtmlVersion")
 }
