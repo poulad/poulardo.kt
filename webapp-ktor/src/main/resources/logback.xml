@@ -4,7 +4,7 @@
             <pattern>%d{YYYY-MM-dd HH:mm:ss.SSS} [%X{CallId}] [%thread] %-5level - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="trace">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
     </root>
     <logger name="io.netty" level="INFO"/>

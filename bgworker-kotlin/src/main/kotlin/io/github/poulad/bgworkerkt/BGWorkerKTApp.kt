@@ -1,11 +1,11 @@
 package io.github.poulad.bgworkerkt
 
 import kotlinx.coroutines.runBlocking
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging
 
-private val logger = LoggerFactory.getLogger("BGWorkerKtApp")!!
+private val logger = KotlinLogging.logger { }
 
 fun main(): Unit = runBlocking {
-    logger.info("Background Worker is starting...")
+    logger.info { "Background Worker is starting..." }
     demoRabbitMQ()
 }

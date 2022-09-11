@@ -9,10 +9,10 @@ import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging
 import kotlin.random.Random
 
-private val logger = LoggerFactory.getLogger("RabbitMQDemo")
+private val logger = KotlinLogging.logger {}
 
 suspend fun demoRabbitMQ() {
     val rabbitMQUri = getConfigurationItemOrDefault("PLD_RABBITMQ_URI", "beegee-worker.rabbitmq.uri")
@@ -23,7 +23,7 @@ suspend fun demoRabbitMQ() {
     }.newConnection("bgworkerkt-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
         ?: throw Exception("Failed to create a connection")
 
-    logger.debug("RabbitMQ connection \"${connection.clientProvidedName}\" is established")
+    logger.debug { "RabbitMQ connection \"${connection.clientProvidedName}\" is established" }
 
     connection.channel {
         coroutineScope {
@@ -33,7 +33,7 @@ suspend fun demoRabbitMQ() {
                     consumeMessageWithConfirm {
                         println(it)
                         val bodyStr = String(it.body)
-                        logger.debug("Received message: `$bodyStr`")
+                        logger.debug { "Received message: `$bodyStr`" }
                         getCustomer(id = bodyStr)
                     }
                 }
@@ -44,6 +44,6 @@ suspend fun demoRabbitMQ() {
 
 private suspend fun getCustomer(id: String): Customer? {
     val customer = DefaultRedisRepository.new().getCustomerById(id)
-    logger.debug("Found customer: $customer")
+    logger.debug { "Found customer: $customer" }
     return customer
 }

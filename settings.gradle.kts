@@ -1,9 +1,9 @@
-rootProject.name = "poulardokt-root"
+rootProject.name = "poulardokt"
 
 include(
+    "practice",
     "shared-lib-kotlin",
     "shared-lib-java",
-    "practice",
     "webapp-ktor",
     "webapp-spring",
     "webapp-wasm",

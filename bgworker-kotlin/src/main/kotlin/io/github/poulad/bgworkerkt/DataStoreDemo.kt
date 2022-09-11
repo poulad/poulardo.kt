@@ -5,9 +5,9 @@ import io.github.crackthecodeabhi.kreds.connection.newClient
 import io.github.crackthecodeabhi.kreds.connection.shutdown
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import kotlinx.coroutines.delay
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging
 
-private val logger = LoggerFactory.getLogger("RedisDemo")
+private val logger = KotlinLogging.logger { }
 
 suspend fun demoRedis() {
     val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "beegee-worker.redis.host")

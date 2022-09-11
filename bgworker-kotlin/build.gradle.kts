@@ -14,15 +14,17 @@ repositories {
     jcenter() // used for "com.viartemev:the-white-rabbit" package.
 }
 
-val coroutinesVersion = "1.6.4"
+val kotlinCoroutineVersion = "${rootProject.ext["kotlinx_coroutine_version"]}"
+val kotlinLoggingVersion = "${rootProject.ext["kotlin_logging_version"]}"
 
 dependencies {
     implementation(project(":shared-lib-kotlin"))
     implementation(project(":shared-lib-java"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion")
     implementation("io.github.crackthecodeabhi:kreds:0.8")
     implementation("com.viartemev:the-white-rabbit:0.0.6")
     implementation("ch.qos.logback:logback-classic:1.2.11")
+    implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
     testImplementation(kotlin("test"))
 }
 

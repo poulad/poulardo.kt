@@ -9,12 +9,12 @@ import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import mu.KotlinLogging
+
+private val logger = KotlinLogging.logger {}
 
 class DefaultRedisRepository private constructor(
     private val redisClient: KredsClient,
-    private val logger: Logger
 ) : RedisRepository, AutoCloseable {
 
     companion object {
@@ -27,8 +27,7 @@ class DefaultRedisRepository private constructor(
             val redisClient = newClient(Endpoint.from("$host:$port")).apply {
                 auth(user, pass)
             }
-            val logger = LoggerFactory.getLogger(DefaultRedisRepository::class.java)!!
-            return DefaultRedisRepository(redisClient, logger)
+            return DefaultRedisRepository(redisClient)
         }
     }
 
@@ -47,6 +46,8 @@ class DefaultRedisRepository private constructor(
         val customerJson = redisClient.get(EntityCachePrefix.CUSTOMER.getKey(id))
             ?: return null
 
+        logger.trace { "Retrieved a customer by ID: $customerJson" }
+
         return Json.decodeFromString<Customer>(customerJson)
     }
 
@@ -56,7 +57,7 @@ class DefaultRedisRepository private constructor(
             EntityCachePrefix.CUSTOMER.getKey(customer.id), customerJson, SetOption.Builder(get = true).build()
         )
         if (previousValue != null) {
-            logger.warn("The record for Customer ${customer.id} was overwritten. Previous value was: $previousValue")
+            logger.warn { "The record for Customer ${customer.id} was overwritten. Previous value was: $previousValue" }
         }
     }
 

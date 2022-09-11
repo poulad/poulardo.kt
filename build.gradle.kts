@@ -10,5 +10,6 @@ allprojects {
         this["kotlinx_coroutine_version"] = "1.6.4"
         this["ktor_client_version"] = "2.1.0"
         this["exposed_orm_version"] = "0.39.2"
+        this["kotlin_logging_version"] = "2.1.23"
     }
 }
