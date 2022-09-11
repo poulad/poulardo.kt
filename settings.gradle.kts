@@ -1,4 +1,4 @@
-rootProject.name = "poulardokt"
+rootProject.name = "poulardokt-root"
 
 include(
     "shared-lib-kotlin",

@@ -4,10 +4,11 @@ import com.rabbitmq.client.ConnectionFactory
 import com.viartemev.thewhiterabbit.channel.channel
 import com.viartemev.thewhiterabbit.channel.consume
 import io.github.poulad.sharedlibjava.queue.QueueName
+import io.github.poulad.sharedlibkt.cache.DefaultRedisRepository
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
+import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
-
 import org.slf4j.LoggerFactory
 import kotlin.random.Random
 
@@ -19,7 +20,7 @@ suspend fun demoRabbitMQ() {
     val connection = ConnectionFactory().apply {
         setUri(rabbitMQUri)
         useNio()
-    }.newConnection("beegee-worker-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
+    }.newConnection("bgworkerkt-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
         ?: throw Exception("Failed to create a connection")
 
     logger.debug("RabbitMQ connection \"${connection.clientProvidedName}\" is established")
@@ -31,10 +32,18 @@ suspend fun demoRabbitMQ() {
                 while (currentCoroutineScope.isActive) {
                     consumeMessageWithConfirm {
                         println(it)
-                        logger.debug("Received message: `${String(it.body)}`")
+                        val bodyStr = String(it.body)
+                        logger.debug("Received message: `$bodyStr`")
+                        getCustomer(id = bodyStr)
                     }
                 }
             }
         }
     }
+}
+
+private suspend fun getCustomer(id: String): Customer? {
+    val customer = DefaultRedisRepository.new().getCustomerById(id)
+    logger.debug("Found customer: $customer")
+    return customer
 }

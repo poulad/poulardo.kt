@@ -1,6 +1,6 @@
 package io.github.poulad.webappktor.routes
 
-import io.github.poulad.sharedlibkt.cache.RedisRepository
+import io.github.poulad.sharedlibkt.cache.DefaultRedisRepository
 import io.github.poulad.sharedlibkt.model.Customer
 import io.github.poulad.sharedlibkt.model.customerStorage
 import io.github.poulad.webappktor.dao.dao
@@ -14,7 +14,7 @@ import io.ktor.server.routing.*
 fun Route.customerRouting() {
     route("$BASE_API_ROUTE/customers") {
         get {
-            val allCustomers = RedisRepository.new().loadAllCustomers()
+            val allCustomers = DefaultRedisRepository.new().loadAllCustomers()
                 .sortedBy { it.id }
 
             call.respond(allCustomers)
@@ -24,7 +24,7 @@ fun Route.customerRouting() {
             val id = this.call.parameters["id"]
                 ?: return@get call.respond(HttpStatusCode.BadRequest)
 
-            val customer = RedisRepository.new().getCustomerById(id)
+            val customer = DefaultRedisRepository.new().getCustomerById(id)
                 ?: return@get call.respond(HttpStatusCode.NotFound)
 
             // TODO remove this
@@ -38,7 +38,7 @@ fun Route.customerRouting() {
             val customer = dao.addNewCustomer(customerDto.firstName, customerDto.lastName, customerDto.email)
                 ?: return@post call.respond(HttpStatusCode.NotAcceptable)
 
-            RedisRepository.new().addNewCustomer(customer)
+            DefaultRedisRepository.new().addNewCustomer(customer)
 
             return@post call.respond(HttpStatusCode.Created, customer)
         }
