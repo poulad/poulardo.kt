@@ -25,6 +25,7 @@ dependencies {
     implementation("com.viartemev:the-white-rabbit:0.0.6")
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
+    implementation("org.kodein.di:kodein-di:7.14.0")
     testImplementation(kotlin("test"))
 }
 

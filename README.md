@@ -2,6 +2,12 @@
 
 Learning Kotlin
 
+## Dependencies
+
+- [Ktor]
+- [Kotlin Logging] for a more performant logging
+- [Kodein DI] for dependency injection
+
 ## Notes
 
 See dependency tree of a sub-project:
@@ -29,3 +35,7 @@ Build and prepare WASM files for serve:
 ./gradlew nativeBinaries
 cp -vf ./webapp-wasm/build/bin/native/releaseExecutable/* ./assets/
 ```
+
+[Ktor]: (https://ktor.io)
+[Kotlin Logging]: (https://github.com/MicroUtils/kotlin-logging)
+[Kodein DI]: (https://github.com/kosi-libs/Kodein)
