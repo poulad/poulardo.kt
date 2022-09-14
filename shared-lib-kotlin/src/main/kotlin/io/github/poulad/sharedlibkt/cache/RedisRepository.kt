@@ -8,4 +8,8 @@ interface RedisRepository {
     suspend fun getCustomerById(id: String): Customer?
 
     suspend fun addNewCustomer(customer: Customer)
+
+    suspend fun subscribeToCustomersChannel()
+
+    suspend fun publishToCustomersChannel(message: String)
 }

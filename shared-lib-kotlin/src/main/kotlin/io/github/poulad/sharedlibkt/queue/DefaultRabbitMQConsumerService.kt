@@ -37,10 +37,10 @@ class DefaultRabbitMQConsumerService(
         connection.channel {
             coroutineScope {
                 val currentCoroutineScope = this
-                consume(QueueName.MY_QUEUE.queueName, 10) {
+                consume(QueueName.MY_QUEUE.queueName, 3) {
                     while (currentCoroutineScope.isActive) {
                         consumeMessageWithConfirm {
-                            println(it)
+                            logger.trace { "RabbitMQ consumer received a delivery with tag ${it.envelope?.deliveryTag}" }
                             val bodyStr = String(it.body)
                             logger.debug { "RabbitMQ consumer received message: `$bodyStr`" }
                             try {

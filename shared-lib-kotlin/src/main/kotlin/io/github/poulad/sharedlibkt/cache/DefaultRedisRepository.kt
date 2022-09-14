@@ -1,16 +1,17 @@
 package io.github.poulad.sharedlibkt.cache
 
 import io.github.crackthecodeabhi.kreds.args.SetOption
-import io.github.crackthecodeabhi.kreds.connection.Endpoint
-import io.github.crackthecodeabhi.kreds.connection.KredsClient
-import io.github.crackthecodeabhi.kreds.connection.newClient
+import io.github.crackthecodeabhi.kreds.connection.*
 import io.github.crackthecodeabhi.kreds.protocol.KredsRedisDataException
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import io.github.poulad.sharedlibkt.model.Customer
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
+import kotlin.time.Duration.Companion.minutes
 
 private val logger = KotlinLogging.logger {}
 
@@ -57,6 +58,55 @@ class DefaultRedisRepository private constructor(
         )
         if (previousValue != null) {
             logger.warn { "The record for Customer ${customer.id} was overwritten. Previous value was: $previousValue" }
+        }
+    }
+
+    override suspend fun publishToCustomersChannel(message: String) {
+        val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "poulardokt.redis.host")
+        val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "poulardokt.redis.port")
+
+        newClient(Endpoint.from("$host:$port")).use { publisher ->
+            for (i in 1 until 10) {
+                publisher.publish(PubSubChannel.CUSTOMERS.channelName, "message-$i")
+            }
+        }
+    }
+
+    override suspend fun subscribeToCustomersChannel() {
+        // This call returns after all the coroutines finish.
+        coroutineScope {
+            val kredSubscriptionHandler = object : AbstractKredsSubscriber() {
+
+                override fun onMessage(channel: String, message: String) {
+                    println("Received message: $message from channel $channel")
+                }
+
+                override fun onSubscribe(channel: String, subscribedChannels: Long) {
+                    println("Subscribed to channel: $channel")
+                }
+
+                override fun onUnsubscribe(channel: String, subscribedChannels: Long) {
+                    println("Unsubscribed from channel: $channel")
+                }
+
+                override fun onException(ex: Throwable) {
+                    println("Exception while handling subscription to redis: ${ex.stackTrace}")
+                }
+
+            }
+
+            val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "poulardokt.redis.host")
+            val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "poulardokt.redis.port")
+            val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "poulardokt.redis.user")
+            val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
+
+            redisClient.auth(user, pass)
+newBlockingClient(x).
+            newSubscriberClient(Endpoint.from("$host:$port"), kredSubscriptionHandler).use { client ->
+                client.subscribe(PubSubChannel.CUSTOMERS.channelName)
+                delay(30.minutes)
+                client.unsubscribe(PubSubChannel.CUSTOMERS.channelName)
+            }
         }
     }
 

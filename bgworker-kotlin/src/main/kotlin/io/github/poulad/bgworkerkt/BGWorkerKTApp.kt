@@ -6,6 +6,8 @@ import io.github.poulad.sharedlibkt.cache.RedisRepository
 import io.github.poulad.sharedlibkt.queue.DefaultRabbitMQConsumerService
 import io.github.poulad.sharedlibkt.queue.QueueConsumerService
 import io.github.poulad.sharedlibkt.queue.newConnectionFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import mu.KotlinLogging
 import org.kodein.di.DI
@@ -25,6 +27,20 @@ fun main(): Unit = runBlocking {
         bindSingleton<ConnectionFactory> { new(::newConnectionFactory) }
     }
 
-    val q: QueueConsumerService by kodein.instance()
-    q.consumeQueue()
+    val redis: RedisRepository by kodein.instance()
+    launch(Dispatchers.IO) {
+//        redis.publishToCustomersChannel("")
+        redis.subscribeToCustomersChannel()
+    }
+
+//    val q: QueueConsumerService by kodein.instance()
+//    launch(Dispatchers.IO) {
+//        q.consumeQueue()
+//        q.consumeQueue()
+//        q.consumeQueue()
+//        q.consumeQueue()
+//        q.consumeQueue()
+//    }
+
+//    shutdown() // Shutdown the Kreds event loop on application shutdown.
 }

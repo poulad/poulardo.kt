@@ -1,10 +1,10 @@
 package io.github.poulad.sharedlibkt.cache
 
 internal enum class EntityCachePrefix(val prefix: String) {
-    CUSTOMER("customer_"),
-    ORDER("order_"),
-    REPORT("report_"),
+    CUSTOMER("customer"),
+    ORDER("order"),
+    REPORT("report"),
     ;
 
-    fun getKey(entityId: String) = "$prefix$entityId"
+    fun getKey(entityId: String) = "${prefix}_${entityId}"
 }
