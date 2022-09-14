@@ -19,10 +19,10 @@ class DefaultRedisRepository private constructor(
 
     companion object {
         suspend fun new(): RedisRepository {
-            val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "webapp.redis.host")
-            val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "webapp.redis.port")
-            val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "webapp.redis.user")
-            val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "webapp.redis.pass")
+            val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "poulardokt.redis.host")
+            val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "poulardokt.redis.port")
+            val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "poulardokt.redis.user")
+            val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
 
             val redisClient = newClient(Endpoint.from("$host:$port")).apply {
                 auth(user, pass)

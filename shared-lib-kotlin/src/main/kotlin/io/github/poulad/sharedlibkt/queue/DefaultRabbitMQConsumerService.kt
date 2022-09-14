@@ -6,34 +6,34 @@ import com.viartemev.thewhiterabbit.channel.channel
 import com.viartemev.thewhiterabbit.channel.consume
 import io.github.poulad.sharedlibjava.queue.QueueName
 import io.github.poulad.sharedlibkt.cache.RedisRepository
-import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.isActive
 import mu.KotlinLogging
-import kotlin.random.Random
 
 private val logger = KotlinLogging.logger {}
 
-class DefaultRabbitMQConsumerService(private val connection: Connection, private val redisRepository: RedisRepository) :
-    QueueConsumerService {
+class DefaultRabbitMQConsumerService(
+    private val connectionFactory: ConnectionFactory,
+    private val redisRepository: RedisRepository
+) : QueueConsumerService {
 
-    companion object {
-        fun newConnection(): Connection {
-            val rabbitMQUri = getConfigurationItemOrDefault("PLD_RABBITMQ_URI", "beegee-worker.rabbitmq.uri")
+    private var _connection: Connection? = null
 
-            val connection = ConnectionFactory().apply {
-                setUri(rabbitMQUri)
-                useNio()
-            }.newConnection("bgworkerkt-${Char(Random.nextInt(26) + 97)}${Char(Random.nextInt(10) + 48)}")
+    private fun ensureConnectedToServer(): Connection {
+        if (_connection == null) {
+            // a network connection to the RabbitMQ server is established:
+            val newConnection = connectionFactory.newConnection(newRabbitMQConnectionName("bgworker"))
                 ?: throw Exception("Failed to create a connection")
 
-            logger.debug { "RabbitMQ connection \"${connection.clientProvidedName}\" is established" }
-            return connection
+            logger.debug { "RabbitMQ connection \"${newConnection.clientProvidedName}\" is established" }
+            _connection = newConnection
         }
+        return _connection!!
     }
 
     override suspend fun consumeQueue() {
+        val connection = ensureConnectedToServer()
         connection.channel {
             coroutineScope {
                 val currentCoroutineScope = this
