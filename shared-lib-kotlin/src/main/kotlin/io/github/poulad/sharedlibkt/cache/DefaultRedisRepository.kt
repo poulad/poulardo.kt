@@ -4,6 +4,7 @@ import io.github.crackthecodeabhi.kreds.args.SetOption
 import io.github.crackthecodeabhi.kreds.connection.Endpoint
 import io.github.crackthecodeabhi.kreds.connection.KredsClient
 import io.github.crackthecodeabhi.kreds.connection.newClient
+import io.github.crackthecodeabhi.kreds.protocol.KredsRedisDataException
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.serialization.decodeFromString
@@ -18,20 +19,17 @@ class DefaultRedisRepository private constructor(
 ) : RedisRepository, AutoCloseable {
 
     companion object {
-        suspend fun new(): RedisRepository {
+        @JvmStatic
+        fun new(): RedisRepository {
             val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "poulardokt.redis.host")
             val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "poulardokt.redis.port")
-            val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "poulardokt.redis.user")
-            val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
-
-            val redisClient = newClient(Endpoint.from("$host:$port")).apply {
-                auth(user, pass)
-            }
+            val redisClient = newClient(Endpoint.from("$host:$port"))
             return DefaultRedisRepository(redisClient)
         }
     }
 
     override suspend fun loadAllCustomers(): List<Customer> {
+        ensureConnected()
         val allCustomersKeys = redisClient.keys("${EntityCachePrefix.CUSTOMER.prefix}*")
         val allCustomersList = mutableListOf<Customer>()
         for (key in allCustomersKeys) {
@@ -43,8 +41,8 @@ class DefaultRedisRepository private constructor(
     }
 
     override suspend fun getCustomerById(id: String): Customer? {
-        val customerJson = redisClient.get(EntityCachePrefix.CUSTOMER.getKey(id))
-            ?: return null
+        ensureConnected()
+        val customerJson = redisClient.get(EntityCachePrefix.CUSTOMER.getKey(id)) ?: return null
 
         logger.trace { "Retrieved a customer by ID: $customerJson" }
 
@@ -52,6 +50,7 @@ class DefaultRedisRepository private constructor(
     }
 
     override suspend fun addNewCustomer(customer: Customer) {
+        ensureConnected()
         val customerJson = Json.encodeToString(customer)
         val previousValue = redisClient.set(
             EntityCachePrefix.CUSTOMER.getKey(customer.id), customerJson, SetOption.Builder(get = true).build()
@@ -59,6 +58,20 @@ class DefaultRedisRepository private constructor(
         if (previousValue != null) {
             logger.warn { "The record for Customer ${customer.id} was overwritten. Previous value was: $previousValue" }
         }
+    }
+
+    private suspend fun ensureConnected(): Boolean {
+        try {
+            redisClient.serverVersion()
+            return true // no issues in reading server's INFO. already connected.
+        } catch (_: KredsRedisDataException) {
+        }
+
+        val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "poulardokt.redis.user")
+        val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
+
+        redisClient.auth(user, pass)
+        return false
     }
 
     override fun close() {

@@ -19,8 +19,7 @@ fun main(): Unit = runBlocking {
     logger.info { "Background Worker is starting..." }
 
     val kodein = DI {
-        // TODO: avoid "runBlocking" here
-        bindSingleton<RedisRepository> { runBlocking { DefaultRedisRepository.new() } }
+        bindSingleton<RedisRepository> { DefaultRedisRepository.new() }
 
         bindSingleton<QueueConsumerService> { new(::DefaultRabbitMQConsumerService) }
         bindSingleton<ConnectionFactory> { new(::newConnectionFactory) }

@@ -16,7 +16,7 @@ private val logger = KotlinLogging.logger {}
 class DefaultRabbitMQConsumerService(
     private val connectionFactory: ConnectionFactory,
     private val redisRepository: RedisRepository
-) : QueueConsumerService {
+) : QueueConsumerService, AutoCloseable {
 
     private var _connection: Connection? = null
 
@@ -59,5 +59,9 @@ class DefaultRabbitMQConsumerService(
         val customer = redisRepository.getCustomerById(id)
         logger.debug { "Found customer: $customer" }
         return customer
+    }
+
+    override fun close() {
+        _connection?.close()
     }
 }
