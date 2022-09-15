@@ -21,7 +21,6 @@ dependencies {
     implementation(project(":shared-lib-kotlin"))
     implementation(project(":shared-lib-java"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion")
-    implementation("io.github.crackthecodeabhi:kreds:0.8")
     implementation("com.viartemev:the-white-rabbit:0.0.6")
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")

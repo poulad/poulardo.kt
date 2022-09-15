@@ -8,5 +8,6 @@ include(
     "webapp-spring",
     "webapp-wasm",
     "bgworker-kotlin",
-    "bgworker-spring"
+    "bgworker-spring",
+    "deps:kreds"
 )

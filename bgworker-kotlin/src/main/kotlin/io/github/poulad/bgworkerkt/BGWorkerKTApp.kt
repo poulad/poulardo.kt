@@ -29,18 +29,18 @@ fun main(): Unit = runBlocking {
 
     val redis: RedisRepository by kodein.instance()
     launch(Dispatchers.IO) {
-//        redis.publishToCustomersChannel("")
         redis.subscribeToCustomersChannel()
+//        redis.publishToCustomersChannel("")
     }
 
-//    val q: QueueConsumerService by kodein.instance()
-//    launch(Dispatchers.IO) {
-//        q.consumeQueue()
-//        q.consumeQueue()
-//        q.consumeQueue()
-//        q.consumeQueue()
-//        q.consumeQueue()
-//    }
+    val q: QueueConsumerService by kodein.instance()
+    launch(Dispatchers.IO) {
+        q.consumeQueue()
+        q.consumeQueue()
+        q.consumeQueue()
+        q.consumeQueue()
+        q.consumeQueue()
+    }
 
 //    shutdown() // Shutdown the Kreds event loop on application shutdown.
 }

@@ -6,12 +6,10 @@ import io.github.crackthecodeabhi.kreds.protocol.KredsRedisDataException
 import io.github.poulad.sharedlibkt.config.getConfigurationItemOrDefault
 import io.github.poulad.sharedlibkt.model.Customer
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import mu.KotlinLogging
-import kotlin.time.Duration.Companion.minutes
 
 private val logger = KotlinLogging.logger {}
 
@@ -64,10 +62,14 @@ class DefaultRedisRepository private constructor(
     override suspend fun publishToCustomersChannel(message: String) {
         val host = getConfigurationItemOrDefault("PLD_REDIS_HOST", "poulardokt.redis.host")
         val port = getConfigurationItemOrDefault("PLD_REDIS_PORT", "poulardokt.redis.port")
+        val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "poulardokt.redis.user")
+        val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
 
         newClient(Endpoint.from("$host:$port")).use { publisher ->
+            publisher.auth(user, pass)
             for (i in 1 until 10) {
-                publisher.publish(PubSubChannel.CUSTOMERS.channelName, "message-$i")
+                val n = publisher.publish(PubSubChannel.CUSTOMERS.channelName, "message-$i")
+                logger.debug { "Published message to channel and n=$n" }
             }
         }
     }
@@ -100,13 +102,9 @@ class DefaultRedisRepository private constructor(
             val user = getConfigurationItemOrDefault("PLD_REDIS_USER", "poulardokt.redis.user")
             val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
 
-            redisClient.auth(user, pass)
-newBlockingClient(x).
-            newSubscriberClient(Endpoint.from("$host:$port"), kredSubscriptionHandler).use { client ->
-                client.subscribe(PubSubChannel.CUSTOMERS.channelName)
-                delay(30.minutes)
-                client.unsubscribe(PubSubChannel.CUSTOMERS.channelName)
-            }
+            val subscriberClient = newSubscriberClient(Endpoint.from("$host:$port"), kredSubscriptionHandler)
+            subscriberClient.auth(user, pass)
+            subscriberClient.subscribe(PubSubChannel.CUSTOMERS.channelName)
         }
     }
 
