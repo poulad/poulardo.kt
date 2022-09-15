@@ -29,6 +29,7 @@ fun Route.customerRouting() {
 
             // TODO remove this
             QueueProducerService.new().publishMessage(id)
+            DefaultRedisRepository.new().publishToCustomersChannel(id)
 
             call.respond(customer)
         }

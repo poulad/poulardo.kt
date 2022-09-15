@@ -8,7 +8,6 @@ val kotlinLoggingVersion = "${rootProject.ext["kotlin_logging_version"]}"
 plugins {
     kotlin("jvm")
     kotlin("plugin.serialization") version "1.6.21"
-    id("io.gitlab.arturbosch.detekt").version("1.21.0")
 }
 
 group = "io.github.poulad"

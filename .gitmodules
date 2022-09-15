@@ -1,3 +1,0 @@
-[submodule "deps/kreds"]
-	path = deps/kreds
-	url = https://github.com/poulad/kreds.git
