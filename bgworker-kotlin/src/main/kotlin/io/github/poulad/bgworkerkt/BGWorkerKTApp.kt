@@ -27,11 +27,8 @@ fun main(): Unit = runBlocking {
         bindSingleton<ConnectionFactory> { new(::newConnectionFactory) }
     }
 
-    val redis: RedisRepository by kodein.instance()
-    launch(Dispatchers.IO) {
-        redis.subscribeToCustomersChannel()
-//        redis.publishToCustomersChannel("")
-    }
+//    val redis: RedisRepository by kodein.instance()
+//    launch(Dispatchers.IO) { redis.subscribeToCustomersChannel() }
 
     val q: QueueConsumerService by kodein.instance()
     launch(Dispatchers.IO) {

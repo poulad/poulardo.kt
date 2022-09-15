@@ -20,7 +20,6 @@ repositories {
 
 dependencies {
     implementation(project(":shared-lib-java"))
-    implementation(project(":deps:kreds"))
     implementation("io.ktor:ktor-client-core:$ktorClientVersion")
     implementation("io.ktor:ktor-client-cio:$ktorClientVersion")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorClientVersion")
@@ -29,6 +28,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedOrmVersion")
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
     implementation("com.viartemev:the-white-rabbit:0.0.6")
+    implementation("io.github.crackthecodeabhi:kreds:0.8")
 
     testImplementation(kotlin("test"))
 }

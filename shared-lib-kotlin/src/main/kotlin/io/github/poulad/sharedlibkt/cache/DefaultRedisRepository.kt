@@ -66,7 +66,7 @@ class DefaultRedisRepository private constructor(
         val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
 
         newClient(Endpoint.from("$host:$port")).use { publisher ->
-            publisher.auth(user, pass)
+//            publisher.auth(user, pass)
             for (i in 1 until 10) {
                 val n = publisher.publish(PubSubChannel.CUSTOMERS.channelName, "message-$i")
                 logger.debug { "Published message to channel and n=$n" }
@@ -103,7 +103,7 @@ class DefaultRedisRepository private constructor(
             val pass = getConfigurationItemOrDefault("PLD_REDIS_PASS", "poulardokt.redis.pass")
 
             val subscriberClient = newSubscriberClient(Endpoint.from("$host:$port"), kredSubscriptionHandler)
-            subscriberClient.auth(user, pass)
+//            subscriberClient.auth(user, pass)
             subscriberClient.subscribe(PubSubChannel.CUSTOMERS.channelName)
         }
     }
